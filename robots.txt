@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://danielramoshoogwout.github.io/dental-a2/sitemap.xml
