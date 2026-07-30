@@ -217,14 +217,21 @@
   .pillar p { font-size: 0.88rem; color: var(--text-soft); }
 
   /* ---------- TEAM ---------- */
-  .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .doc { display: grid; grid-template-columns: 128px 1fr; gap: 26px; background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 28px; align-items: center; transition: box-shadow .3s, transform .3s; }
-  .doc:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
-  .doc .avatar { width: 128px; height: 128px; border-radius: 50%; position: relative; overflow: hidden; background: var(--paper-2); border: 1px solid var(--line); display: grid; place-items: center; }
-  .doc .initials { font-size: 3rem; font-weight: 300; color: var(--gold-deep); font-family: var(--font-serif); }
-  .doc h3 { font-size: 1.3rem; letter-spacing: -0.01em; font-weight: 500; }
-  .doc .role { color: var(--gold-deep); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 6px; }
-  .doc p { margin-top: 14px; font-size: 0.92rem; color: var(--text-soft); }
+  .team { display: flex; flex-direction: column; gap: clamp(52px, 7vw, 100px); }
+  .founder { display: flex; align-items: center; gap: clamp(28px, 5vw, 76px); }
+  .founder.reverse { flex-direction: row-reverse; }
+
+  .founder-photo { flex: 0 0 40%; position: relative; display: flex; justify-content: center; align-items: flex-end; min-height: 400px; }
+  .founder-photo .backdrop { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: min(330px, 86%); aspect-ratio: 1; border-radius: 50%; background: var(--paper-2); }
+  .founder-photo .ring { position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: min(354px, 92%); aspect-ratio: 1; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent); }
+  .founder-photo img { position: relative; z-index: 1; width: min(356px, 94%); display: block; filter: drop-shadow(0 26px 42px rgba(26, 26, 24, 0.20)); }
+
+  .founder-body { flex: 1; }
+  .founder-body .role { color: var(--gold-deep); font-weight: 600; font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 10px; }
+  .founder-body h3 { font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 300; letter-spacing: -0.02em; margin-top: 4px; }
+  .founder-body h3 strong { font-weight: 500; }
+  .founder-body p.bio { margin-top: 20px; color: var(--text-soft); font-size: 1.02rem; max-width: 48ch; }
+  .founder-quote { margin-top: 28px; padding: 4px 0 4px 22px; border-left: 2px solid var(--gold); font-family: var(--font-serif); font-style: italic; font-size: clamp(1.1rem, 1.7vw, 1.28rem); line-height: 1.5; color: var(--ink); max-width: 44ch; }
 
   /* ---------- CONTACT ---------- */
   .contact-card {
@@ -288,7 +295,8 @@
     .svc:nth-child(2n) { border-right: none; }
     .svc:nth-child(n+7) { border-bottom: none; }
     .svc-feature { flex-direction: column; align-items: flex-start; }
-    .team-grid { grid-template-columns: 1fr; }
+    .founder, .founder.reverse { flex-direction: column; }
+    .founder-photo { flex: none; width: 100%; min-height: 360px; }
     .contact-card { grid-template-columns: 1fr; }
     .contact-card::after { display: none; }
     .foot-grid { grid-template-columns: 1fr 1fr; }
@@ -301,8 +309,7 @@
     .svc:last-child { border-bottom: none; }
     .svc-feature .sf-main { flex-direction: column; align-items: flex-start; }
     .pillars { grid-template-columns: 1fr; }
-    .doc { grid-template-columns: 1fr; text-align: center; }
-    .doc .avatar { margin-inline: auto; }
+    .founder-photo { min-height: 320px; }
     .foot-grid { grid-template-columns: 1fr; }
     .hero-meta { gap: 26px; }
   }
@@ -569,21 +576,32 @@
         <h2>Especialistas que hacen fácil lo <strong>complejo</strong>.</h2>
         <p>Doctores altamente especializados con amplia experiencia, formados en centros de referencia internacionales.</p>
       </div>
-      <div class="team-grid">
-        <article class="doc reveal">
-          <div class="avatar" aria-hidden="true"><span class="initials">N</span></div>
-          <div>
-            <h3>Dra. Nilsson</h3>
+      <div class="team">
+        <article class="founder reverse reveal">
+          <div class="founder-photo">
+            <span class="backdrop" aria-hidden="true"></span>
+            <span class="ring" aria-hidden="true"></span>
+            <img src="images/anna.PNG" alt="Dra. Anna Nilsson, cofundadora de A2 Dental" />
+          </div>
+          <div class="founder-body">
             <div class="role">Cofundadora · Estética & Ortodoncia</div>
-            <p>Referente en diseño digital de sonrisa y ortodoncia invisible, combina precisión clínica con una mirada estética natural.</p>
+            <h3>Dra. Anna <strong>Nilsson</strong></h3>
+            <p class="bio">Formada en odontología estética y ortodoncia, la Dra. Nilsson lidera el área de diseño digital de sonrisa y los tratamientos con Invisalign. Une precisión clínica y una mirada estética natural para lograr resultados que encajan con cada rostro.</p>
+            <p class="founder-quote">"Mi objetivo no es solo una sonrisa perfecta, sino que te sientas tú mismo cada vez que sonríes."</p>
           </div>
         </article>
-        <article class="doc reveal">
-          <div class="avatar" aria-hidden="true"><span class="initials">R</span></div>
-          <div>
-            <h3>Dr. Rico</h3>
+
+        <article class="founder reveal">
+          <div class="founder-photo">
+            <span class="backdrop" aria-hidden="true"></span>
+            <span class="ring" aria-hidden="true"></span>
+            <img src="images/alberto.PNG" alt="Dr. Alberto Rico, cofundador de A2 Dental" />
+          </div>
+          <div class="founder-body">
             <div class="role">Cofundador · Implantes & Cirugía</div>
-            <p>Especializado en implantología y cirugía oral con sedación, prioriza tratamientos mínimamente invasivos y sin dolor.</p>
+            <h3>Dr. Alberto <strong>Rico</strong></h3>
+            <p class="bio">Especialista en implantología y cirugía oral, el Dr. Rico dirige los tratamientos quirúrgicos de la clínica, con sedación consciente cuando se necesita. Apuesta por una odontología mínimamente invasiva y centrada en la comodidad del paciente.</p>
+            <p class="founder-quote">"Detrás de cada tratamiento hay una persona. Mi prioridad es que estés tranquilo, informado y sin ningún dolor."</p>
           </div>
         </article>
       </div>
