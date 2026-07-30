@@ -57,9 +57,11 @@ Para no editar tres HTML a mano, las páginas se **generan** a partir de una ún
 
 - **[`build/source.html`](build/source.html)** — fuente de la verdad: contiene el diccionario de textos `T` (ES/EN/DE) y el marcado con atributos `data-i18n`.
 - **[`build/generate.js`](build/generate.js)** — genera `index.html`, `en/index.html` y `de/index.html` (con el texto ya escrito en cada idioma) más `sitemap.xml`, `robots.txt`, `.nojekyll` y, si se configura, `CNAME`.
+- **[`build/make-favicon.js`](build/make-favicon.js)** — a partir de `build/favicon-source.png` (logo A2 cuadrado, transparente) crea el favicon con **fondo blanco**: `favicon.svg` (vectorial, nítido a cualquier tamaño) e `images/favicon.png` (270×270, para iOS y navegadores antiguos). Solo hay que reejecutarlo si cambia el logo.
 
 ```bash
-node build/generate.js
+node build/generate.js      # páginas + sitemap/robots
+node build/make-favicon.js  # favicon (solo si cambia el logo)
 ```
 
 Para **cambiar un texto o traducción**, edita el diccionario `T` en `build/source.html` y vuelve a ejecutar el generador. La configuración está al principio de `build/generate.js`:

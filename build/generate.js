@@ -102,6 +102,7 @@ function jsonld(lang) {
 
 function head(lang) {
   const m = META[lang];
+  const rel = lang === 'es' ? '' : '../'; // subfolder pages reach root assets via ../
   const alt = ['es', 'en', 'de'].map(l =>
     `  <link rel="alternate" hreflang="${l}" href="${URLS[l]}" />`).join('\n');
   return [
@@ -110,6 +111,10 @@ function head(lang) {
     '<head>',
     '  <meta charset="utf-8" />',
     '  <meta name="viewport" content="width=device-width, initial-scale=1" />',
+    '  <meta name="theme-color" content="#FBFAF7" />',
+    `  <link rel="icon" type="image/svg+xml" href="${rel}favicon.svg" />`,
+    `  <link rel="icon" type="image/png" sizes="270x270" href="${rel}images/favicon.png" />`,
+    `  <link rel="apple-touch-icon" href="${rel}images/favicon.png" />`,
     `  <title>${esc(m.title)}</title>`,
     `  <meta name="description" content="${esc(m.desc)}" />`,
     `  <link rel="canonical" href="${URLS[lang]}" />`,
